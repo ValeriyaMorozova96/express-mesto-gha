@@ -57,9 +57,9 @@ module.exports.likeCard = (req, res) => {
     .then((card) => {
       if (!card) {
         res.status(ERROR_NOT_FOUND).send({ message: 'Передан несуществующий _id карточки' });
-      } else {
-        res.status(200).send({ data: card });
+        return;
       }
+      res.status(200).send({ data: card });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -79,9 +79,9 @@ module.exports.dislikeCard = (req, res) => {
     .then((card) => {
       if (!card) {
         res.status(ERROR_NOT_FOUND).send({ message: 'Передан несуществующий _id карточки' });
-      } else {
-        res.status(200).send({ data: card });
+        return;
       }
+      res.status(200).send({ data: card });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
