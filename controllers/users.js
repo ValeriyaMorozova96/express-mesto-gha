@@ -8,7 +8,7 @@ const {
 module.exports.getUsers = (req, res) => {
   User.find({})
     .then((users) => {
-      res.status(201).send({ data: users });
+      res.status(200).send({ data: users });
     })
     .catch(() => {
       res.status(ERROR_INTERNAL_SERVER).send({ message: 'Произошла ошибка на сервере' });
@@ -21,7 +21,7 @@ module.exports.getUserById = (req, res) => {
       throw new Error('NotFound');
     })
     .then((user) => {
-      res.status(201).send({ data: user });
+      res.status(200).send({ data: user });
     })
     .catch((err) => {
       if (err.message === 'NotFound') {
@@ -40,7 +40,7 @@ module.exports.createUser = (req, res) => {
   const { name, about, avatar } = req.body;
   User.create({ name, about, avatar })
     .then((user) => {
-      res.status(201).send({ data: user });
+      res.status(200).send({ data: user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -59,7 +59,7 @@ module.exports.updateUser = (req, res) => {
       throw new Error('NotFound');
     })
     .then((user) => {
-      res.status(201).send({ data: user });
+      res.status(200).send({ data: user });
     })
     .catch((err) => {
       if (err.message === 'NotFound') {
@@ -82,7 +82,7 @@ module.exports.updateAvatar = (req, res) => {
       throw new Error('NotFound');
     })
     .then((user) => {
-      res.status(201).send({ data: user });
+      res.status(200).send({ data: user });
     })
     .catch((err) => {
       if (err.message === 'NotFound') {

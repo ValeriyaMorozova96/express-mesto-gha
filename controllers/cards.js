@@ -8,7 +8,7 @@ const {
 module.exports.getCards = (req, res) => {
   Card.find({})
     .then((cards) => {
-      res.status(201).send({ data: cards });
+      res.status(200).send({ data: cards });
     })
     .catch(() => {
       res.status(ERROR_INTERNAL_SERVER).send({ message: 'Произошла ошибка на сервере' });
@@ -20,7 +20,7 @@ module.exports.createCard = (req, res) => {
   const owner = req.user._id;
 
   Card.create({ name, link, owner })
-    .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(ERROR_BAD_REQUEST).send({ message: 'Переданы некорректные данные при создании карточки' });
@@ -58,7 +58,7 @@ module.exports.likeCard = (req, res) => {
     .orFail(() => {
       throw new Error('NotFound');
     })
-    .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.message === 'NotFound') {
         res.status(ERROR_NOT_FOUND).send({ message: 'Передан несуществующий _id карточки' });
@@ -81,7 +81,7 @@ module.exports.dislikeCard = (req, res) => {
     .orFail(() => {
       throw new Error('NotFound');
     })
-    .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.message === 'NotFound') {
         res.status(ERROR_NOT_FOUND).send({ message: 'Передан несуществующий _id карточки' });
