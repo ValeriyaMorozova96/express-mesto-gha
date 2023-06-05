@@ -1,9 +1,7 @@
-const AUTHORIZATION_ERROR = require('../errors');
-
 class AuthorizationError extends Error {
   constructor(message) {
     super(message);
-    this.statusCode = AUTHORIZATION_ERROR;
+    this.statusCode = 401;
   }
 }
 module.exports = AuthorizationError;

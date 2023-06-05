@@ -30,15 +30,18 @@ const rateLimiter = rateLimit({
 });
 app.use(rateLimiter);
 app.use(helmet());
+
 app.use(auth);
+
 app.use('/', userRoutes);
 app.use('/', cardRoutes);
-app.use(errors());
-app.use(errorHandler);
 
-app.use('*', (req, res, next) => {
+app.use('/*', (req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
 });
+
+app.use(errors());
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line
