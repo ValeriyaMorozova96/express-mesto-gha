@@ -39,12 +39,7 @@ module.exports.getCurrentUser = (req, res, next) => {
         next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new BadRequestError('Некорректный id пользователя'));
-      }
-      return next(err);
-    });
+    .catch(next);
 };
 
 module.exports.createUser = (req, res, next) => {
