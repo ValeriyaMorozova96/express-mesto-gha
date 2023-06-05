@@ -16,9 +16,9 @@ const {
 
 userRoutes.get('/users', getUsers);
 
-userRoutes.get('/users/:userId', userIdValidation, getUserById);
-
 userRoutes.get('/users/me', getCurrentUser);
+
+userRoutes.get('/users/:userId', userIdValidation, getUserById);
 
 userRoutes.patch('/users/me', userInfoValidation, updateUser);
 

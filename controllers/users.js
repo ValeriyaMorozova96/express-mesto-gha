@@ -31,13 +31,13 @@ module.exports.getUserById = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
-  User.findById(req.user._id)
+  const userId = req.user._id;
+  User.findById(userId)
     .then((user) => {
-      if (user) {
-        res.send({ data: user });
-      } else {
+      if (!user) {
         throw new NotFoundError('Пользователь по указанному _id не найден');
       }
+      res.send(user);
     })
     .catch(next);
 };
